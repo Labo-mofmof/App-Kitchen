@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<title>M's Kitchen</title>
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700">
+</head>
+<body>
+<div class="main-container">
+    <div class="top-bar">
+    	<h1><img id="topBarLogo" src="css/images/logo.png" width="114" height="28" alt="M's Kitchen"><span>今日の献立</span>
+    		<i class="top-bar-menu fa fa-bars fa-pull-right"></i>
+			<i class="top-bar-menu fa fa-times fa-pull-right"></i>
+		</h1>
+	</div>
+	<div id="sidemenu">
+		<ul>
+			<li class="home-btn" data-to="slide-home">
+				<div class="home-btn-title">今日の献立</div>
+			</li>
+			<li class="home-btn" data-to="slide-calendar">
+				<div class="home-btn-title">カレンダー</div>
+			</li>
+			<li class="home-btn" data-to="slide-shopping">
+				<div class="home-btn-title">買い物リスト</div>
+			</li>
+			<li class="home-btn" data-to="slide-settings">
+				<div class="home-btn-title">設定</div>
+			</li>
+			<li class="home-btn-last"></li>
+		</ul>
+	</div>
+	<div class="main main-blocks">
+		<div class="animation-container">
+			<div data-id="slide-home" class="animation-container__block" data-block="out" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+    				<div id="kitchenForToday"></div>
+				<div id="kitchenForTodayNone" class="hide">
+					<p id="kitchenForTodayMessage">今日の献立はありません</p>
+					<div id="kitchenForTodayCreate">献立をたてる</div>
+				</div>
+			</div>
+			<div data-id="slide-recipe" class="animation-container__block" data-block="in" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+				<div id="recipe-search" class="control-box border-bottom">
+					<input type="button" id="commitBtn" value="保存">
+					<input type="button" id="researchBtn" value="再作成">
+					<input type="button" id="settingBtn" class="fas btn-icon-only btn-noborder" value="&#xf1de;">
+					<div id="recipe-search-setting" class="balloon active">
+						<select id="recipe-people">
+							<option value="1">1人分</option>
+							<option value="2" selected="selected">2人分</option>
+							<option value="3">3人分</option>
+							<option value="4">4人分</option>
+						</select>
+					</div>
+				</div>
+				<div id="mkitchen"></div>
+			</div>
+			<div data-id="slide-calendar" class="animation-container__block" data-block="in" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+				<div class="control-box border-bottom">
+					<input type="button" id="tablePagenaterLeft" class="fas btn-icon-only" value="&#xf104;">
+					<input type="button" id="showTodayCalendarBtn" value="今日">
+					<input type="button" id="editCalendarMenuBtn" value="献立を編集する" class="hide">
+					<input type="button" id="createCalendarMenuBtn" value="献立をたてる" class="hide">
+					<input type="button" id="tablePagenaterRight" class="fas btn-icon-only" value="&#xf105;">
+				</div>
+				<div id="weeklyCalendar">
+					<table id="weeklyCalendarTable" class="border-top border-bottom">
+						<thead>
+							<tr class="date">
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="summary">
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+								<td><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i><i class="fas fa-circle fa-xs"></i></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="calendarMenu">
+					<table id="calendarMenuTable" class="border-top border-bottom">
+						<thead>
+							<tr>
+								<th data-index="0"><i class="fas fa-sun fa-lg"></i></th>
+								<th data-index="1"><i class="fas fa-cloud-sun fa-lg"></i></th>
+								<th data-index="2"><i class="fas fa-moon fa-lg"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="calendar-menu breakfast" data-index="0">
+									<ul><li data-role="food"></li><li data-role="main"></li><li data-role="side"></li></ul>
+								</td>
+								<td class="calendar-menu lunch" data-index="1">
+									<ul><li data-role="food"></li><li data-role="main"></li><li data-role="side"></li></ul>
+								</td>
+								<td class="calendar-menu dinner" data-index="2">
+									<ul><li data-role="food"></li><li data-role="main"></li><li data-role="side"></li></ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="calendarMemo" class="border-top"></div>
+				</div>
+				<!--<div id="kitchenForCalendar"></div>-->
+			</div>
+			<div data-id="slide-shopping" class="animation-container__block" data-block="in" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+               	<div class="control-box border-bottom">
+					<input id="shopping-start" type="date" value="">～
+					<input id="shopping-end" type="date" value="">
+					<input type="button" id="createShoppingListBtn" value="作成">
+				</div>
+				<ul id="shoppingList" class="border-top"></ul>
+				<ul id="seasoningList"></ul>
+			</div>
+			<div data-id="slide-checklist" class="animation-container__block" data-block="in" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+				<div class="control-box border-bottom">
+					<input type="button" class="goToSlideShopping" value="戻る">
+				</div>
+				<ul id="shoppingItemList"></ul>
+			</div>
+    		<div data-id="slide-settings" class="animation-container__block" data-block="in" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+    			<div class="form-control">
+					<label for="setting-people">人数（初期値）</label>
+					<input id="setting-people" type="text" value="" readonly="readonly" />
+				</div>
+        		<div class="form-control">
+					<label for="setting-days">日数（初期値）</label>
+					<input id="setting-days" type="text" value="" readonly="readonly" />
+				</div>
+			</div>
+			<!--
+			<div data-id="popup-edit-todo" class="animation-container__block" data-block="in" data-scroll-left="0" data-scroll-top="0" data-initialized="false">
+				<div class="control-panel">
+					<i id="pnt-close" class="fas fa-chevron-left"></i>
+					<i id="pnt-submit" class="fas fa-check fa-pull-right"></i>
+				</div>
+				<div class="errorMessages"></div>
+				<div class="form-control">
+					<label for="pnt-complete">完了</label>
+					<div class="switchArea">
+						<input type="checkbox" id="pnt-complete">
+						<label for="pnt-complete"><span></span></label>
+						<div class="swImg"></div>
+					</div>
+				</div>
+				<div class="form-control">
+					<input id="pnt-title" type="text" maxlength="255" placeholder="タイトル" />
+				</div>
+				<div class="form-control">
+					<label for="pnt-start">開始日</label>
+					<input id="pnt-start" type="text" class="datepicker" readonly="readonly" />
+				</div>
+				<div class="form-control">
+					<label for="pnt-end">終了日</label>
+					<input id="pnt-end" type="text" class="datepicker" readonly="readonly" />
+				</div>
+				<div class="form-control">
+					<textarea id="pnt-memo" rows="8" placeholder="メモ"></textarea>
+				</div>
+			</div>
+			-->
+		</div>
+	</div>
+	<div class="bottom-bar blocks-bottom blocks-holder">
+		<p>Ad Space</p>
+	</div>
+</div>
+<script src="components/loader.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/animateTransition.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/recipe.js"></script>
+<script src="js/ozen.js"></script>
+<script src="js/init.js"></script>
+</body>
+</html>
